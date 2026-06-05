@@ -1,0 +1,27 @@
+# Personal assets — never commit
+assets/blank_form.docx
+assets/signature.png
+assets/signature.*
+assets/*.docx
+
+# OAuth secrets (Path B) — even if someone misplaces them here
+credentials.json
+token.json
+*.b64
+
+# Filled forms + per-claim bundles
+output/*
+!output/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# macOS / editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
