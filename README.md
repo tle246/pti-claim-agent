@@ -2,6 +2,8 @@
 
 A [Claude Code](https://claude.com/claude-code) template for filing PTI (Bưu Điện) health insurance claims by chatting with an AI agent.
 
+![demo](demo.gif)
+
 > **What it does**: drop your medical receipts in chat → the agent reads them, extracts insured / hospital / date / amount, fills the official PTI claim form, embeds your signature, and creates a Gmail draft ready to send. ~2 minutes per claim instead of ~20.
 
 Built originally for the **NABVN Healthcare Program (VSDC)**, but the pattern works for any group health policy that uses the same Marsh/PTI claim flow.
@@ -113,6 +115,17 @@ The skeleton is generic: agentic extraction from receipts → fill a `.docx` tem
 Works for expense reimbursement, travel claims, warranty claims — anything that's "fill a form + email it with receipts attached".
 
 ---
+
+## Re-rendering the demo GIF
+
+Install [vhs](https://github.com/charmbracelet/vhs) and run:
+
+```bash
+brew install vhs ttyd chromium
+vhs scripts/demo.tape   # writes demo.gif
+```
+
+The "session" is scripted in `scripts/demo.sh` — edit pacing or copy there.
 
 ## License
 

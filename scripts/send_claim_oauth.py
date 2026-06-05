@@ -3,11 +3,12 @@
 Usage (called by the agent, not by hand):
 
     python3 scripts/send_claim_oauth.py \\
-        --to nhanhsbt.mn@pti.com.vn \\
-        --cc broker@example.com,you@nab.com.au \\
-        --subject "HS YCBT - Ngoc - 0000.../MAR01 - VSDC" \\
+        --to claims@insurer.example \\
+        --cc broker@example.com,you@example.com \\
+        --from you@example.com \\
+        --subject "HS YCBT - Nguyen Van A - 0000XXX/.../MAR01 - VSDC" \\
         --body-file /tmp/body.txt \\
-        --attach output/Foo_2026-05-25/
+        --attach output/NguyenVanA_2026-05-25/
 
 Attaches every file in the given directory (or the listed files). Prints the draft id on success.
 """
