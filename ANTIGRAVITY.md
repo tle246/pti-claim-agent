@@ -1,33 +1,19 @@
+# Chosen path: A
+
 # PTI Claim Agent — Project Memory
 
-This file is auto-loaded by Claude Code in this folder. It tells the agent how to help with PTI insurance claims.
-
-> **First-run setup**: if any `[BRACKETED_PLACEHOLDER]` below is unfilled, the agent should walk the user through the [setup checklist](#first-run-setup-checklist) before doing anything else.
-
----
-
-## First-run setup checklist
-
-When the user first invokes Claude Code in this folder, **and any of the placeholders below are unfilled**, do this:
-
-1. Ask: *"Which Gmail integration path do you want — A (manual attach, zero setup) or B (auto attach, 10 min OAuth setup)?"*
-2. Read the README's "Two integration paths" table to them if they're unsure.
-3. Save their choice as `# Chosen path: A` or `# Chosen path: B` at the top of this CLAUDE.md (replace this checklist with it).
-4. Walk through filling in [profile](#profile), [insureds](#insured-persons), [bank](#bank), [email routing](#email-routing) — one section at a time.
-5. Confirm assets are in place: `assets/blank_form.docx` and `assets/signature.png`. If not, ask the user to add them (README §3).
-6. If Path B: walk through `SETUP_PATH_B.md` (Google Cloud Console + OAuth handshake).
-7. Once everything is in place, delete this checklist section and reply *"Setup complete. Drop evidence files in chat and say 'file a claim for [name]' whenever you're ready."*
+This file is auto-loaded by Antigravity in this folder. It tells the agent how to help with PTI insurance claims.
 
 ---
 
 ## Profile
 
-- Policyholder (employee): `[YOUR_FULL_NAME]`
-- Policyholder (corporate, if group policy): `[CORPORATE_POLICY_HOLDER_NAME]`
-- Policy number: `[POLICY_NUMBER]`
-- Policy label (e.g. "VSDC (NAB Vietnam)"): `[POLICY_LABEL]`
+- Policyholder (employee): `Lê Văn Tính`
+- Policyholder (corporate, if group policy): `NAB Vietnam`
+- Policy number: `0000185/HD/CN.4.5/000-2/2024/MAR01`
+- Policy label (e.g. "VSDC (NAB Vietnam)"): `VSDC NAB Vietnam`
 - Employee ID at your company: `[EMPLOYEE_ID]`
-- Gmail: `[YOUR_GMAIL]`
+- Gmail: `figurineofficial@gmail.com`
 - Phone: `[YOUR_PHONE]`
 
 ## Insured persons
@@ -36,16 +22,15 @@ Fill in every person covered under the policy. The agent uses this to map a part
 
 | Name | DOB | ID number | Relationship | Plan |
 |------|-----|-----------|--------------|------|
-| `[FULL_NAME_1]` | `[DD/MM/YYYY]` | `[CCCD]` | Self / Spouse / Father / etc. | `[Plan X]` |
-| `[FULL_NAME_2]` | `[DD/MM/YYYY]` | `[CCCD]` | | |
+| `Lê Văn Tính` | `10/02/1963` | `[CCCD]` | Self | `[Plan X]` |
 
 ## Bank (for reimbursement)
-- Account: `[ACCOUNT_NUMBER]`
-- Bank: `[BANK_NAME]`
-- Beneficiary: `[BENEFICIARY_NAME]` (must match the account holder name exactly)
+- Account: `0041 3814 102`
+- Bank: `TPBank`
+- Beneficiary: `Lê Văn Tài`
 
 ## Email routing
-- TO: `[INSURER_CLAIMS_EMAIL]` (e.g. `nhanhsbt.mn@pti.com.vn`)
+- TO: `figurineofficial@gmail.com`
 - CC: `[BROKER_EMAIL]`, `[YOUR_HR_OR_WORK_EMAIL]`
 - Subject pattern: `HS YCBT - [Insured Name] - [POLICY_NUMBER] - [POLICY_LABEL]`
 
@@ -118,7 +103,7 @@ Cellphone: [YOUR_PHONE]
 
 - **HEIC** (iPhone photos): convert with `sips -s format jpeg input.HEIC --out output.jpg`.
 - **Large JPEGs**: resize so the longest side is ≤2000px and re-encode at quality 82 (Pillow). Typical 5 MB phone photo → ~500 KB.
-- **PDFs**: pass through unchanged — readable directly by Claude.
+- **PDFs**: pass through unchanged — readable directly by Antigravity.
 
 ---
 

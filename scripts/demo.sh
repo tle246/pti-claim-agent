@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Simulated Claude Code session for the demo GIF.
-# Pacing tuned for readability — not a real claude invocation.
+# Simulated Antigravity session for the demo GIF.
+# Pacing tuned for readability — not a real antigravity invocation.
 
 set -u
 
@@ -26,9 +26,9 @@ type_line() {
 }
 
 clear
-p "${GRAY}~/pti-claim-agent \$${RESET} ${BOLD}claude${RESET}"
+p "${GRAY}~/pti-claim-agent \$${RESET} ${BOLD}antigravity${RESET}"
 slow 0.8
-p "${DIM}Starting Claude Code... reading CLAUDE.md${RESET}"
+p "${DIM}Starting Antigravity... reading ANTIGRAVITY.md${RESET}"
 slow 1.0
 p ""
 p "${CYAN}●${RESET} ${DIM}Ready. Drop receipts in chat and tell me who to file for.${RESET}"

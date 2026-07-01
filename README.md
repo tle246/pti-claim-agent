@@ -1,6 +1,6 @@
 # PTI Claim Agent
 
-A [Claude Code](https://claude.com/claude-code) template for filing PTI (Bưu Điện) health insurance claims by chatting with an AI agent.
+An [Antigravity](https://github.com/google-deepmind) template for filing PTI (Bưu Điện) health insurance claims by chatting with an AI agent.
 
 ![demo](demo.gif)
 
@@ -34,10 +34,10 @@ Agent: ✅ Draft created in Gmail. Subject: HS YCBT - ...
 
 ## Two integration paths
 
-The only meaningful setup choice is **how the Gmail draft gets attachments**. Pick one — your local CLAUDE.md will be tailored to that path.
+The only meaningful setup choice is **how the Gmail draft gets attachments**. Pick one — your local ANTIGRAVITY.md will be tailored to that path.
 
 ### Path A — Manual attach (zero setup)
-- Uses the Claude Gmail [MCP connector](https://claude.com/blog/desktop-connectors) (free, already available in Claude.ai / Claude Code).
+- Uses the Gmail MCP connector connected to Antigravity.
 - Agent creates a body-only draft and bundles all your files into one folder.
 - You open Gmail, drag the bundled folder's contents into the draft, send.
 - **Setup**: 0 minutes. **Per-claim friction**: ~30 sec of dragging.
@@ -52,7 +52,7 @@ The only meaningful setup choice is **how the Gmail draft gets attachments**. Pi
 | Setup time | 0 min | ~10 min |
 | Per-claim friction | Drag files (~30 sec) | None |
 | Security surface | Existing MCP grant | One OAuth token (scope `gmail.compose`) on local disk |
-| Works without Claude infra | ❌ | ✅ |
+| Works without Antigravity infra | ❌ | ✅ |
 | Multi-device | Wherever your MCP works | Wherever you copy the token |
 | Recommended for | 1–5 claims/year | 6+ claims/year, multi-claim batches |
 
@@ -63,8 +63,8 @@ The only meaningful setup choice is **how the Gmail draft gets attachments**. Pi
 ## Getting started
 
 ### 1. Prereqs
-- [Claude Code](https://claude.com/claude-code) installed (any plan).
-- Gmail MCP connected in Claude Code (Settings → Connectors → Gmail) — needed for both paths.
+- Antigravity installed.
+- Gmail MCP connected in Antigravity — needed for both paths.
 - Python 3.9+ — only needed for Path B.
 
 ### 2. Clone
@@ -78,13 +78,13 @@ Put two files in `assets/`:
 - `blank_form.docx` — the official PTI claim form (your HR / insurance broker has it; PTI also publishes it at https://pti.com.vn)
 - `signature.png` — a transparent-background PNG of your signature, ~300–600px wide
 
-### 4. Launch Claude Code in this folder
+### 4. Launch Antigravity in this folder
 ```bash
 cd ~/pti-claim-agent
-claude
+antigravity
 ```
 
-On first launch, the agent reads [`CLAUDE.md`](./CLAUDE.md) and will:
+On first launch, the agent reads [`ANTIGRAVITY.md`](./ANTIGRAVITY.md) and will:
 1. Ask which path (A or B) you want.
 2. Walk you through filling in your personal details (policy number, insureds, bank, signature, email routing).
 3. If Path B: walk you through the Google Cloud Console flow.
@@ -100,7 +100,7 @@ After that, every claim is just **"file a claim for [name]" + drop evidence in c
 - `assets/blank_form.docx`, `assets/signature.png` — your personal docs
 - `output/` — filled forms + per-claim bundles
 
-Your personal details in `CLAUDE.md` (policy number, insureds, bank) **are** tracked by git in your local clone. Keep this repo private (or strip those before pushing) if you fork.
+Your personal details in `ANTIGRAVITY.md` (policy number, insureds, bank) **are** tracked by git in your local clone. Keep this repo private (or strip those before pushing) if you fork.
 
 ---
 
@@ -109,7 +109,7 @@ Your personal details in `CLAUDE.md` (policy number, insureds, bank) **are** tra
 The skeleton is generic: agentic extraction from receipts → fill a `.docx` template with `{{KEY}}` placeholders → embed a signature image → create a Gmail draft. To adapt:
 
 1. Swap `assets/blank_form.docx` for the new form (tokens or labels).
-2. Update CLAUDE.md: profile, insureds, email routing, body template.
+2. Update ANTIGRAVITY.md: profile, insureds, email routing, body template.
 3. The Python helper (`scripts/send_claim_oauth.py`) for Path B is form-agnostic.
 
 Works for expense reimbursement, travel claims, warranty claims — anything that's "fill a form + email it with receipts attached".
@@ -133,4 +133,4 @@ MIT — see [LICENSE](./LICENSE).
 
 ## Credits
 
-Built collaboratively with [Claude Code](https://claude.com/claude-code) by [@pkngoc](https://github.com/pkngoc). PRs welcome.
+Built collaboratively with Antigravity by [@pkngoc](https://github.com/pkngoc). PRs welcome.
