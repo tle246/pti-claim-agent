@@ -40,11 +40,7 @@ Fill in every person covered under the policy. The agent uses this to map a part
 
 When the user says **"file a claim for [name]"**:
 
-1. **Interactive Prompting (One by One)**: Do NOT ask for Visit date, Hospital, Diagnosis, or Amount. You MUST strictly ask the user for the following missing information ONE BY ONE in the chat:
-   - BANK_ACCOUNT
-   - BANK_NAME
-   - BANK_BENEFICIARY
-   Wait for the user's response to each question before asking the next.
+1. **Interactive Prompting (Default Values)**: Do NOT ask for Visit date, Hospital, Diagnosis, or Amount. Ask the user if they want to use the default bank values specified in the profile (Account: 0041 3814 102, Bank: TPBank, Beneficiary: Lê Văn Tài). If they agree, proceed to the next step. If they do not, ask them for the new bank details ONE BY ONE.
 2. **Confirm** with the user — summarize the bank information provided and ask them to double check before proceeding.
 3. **Fill the form**: Run `python3 scripts/fill_claim.py` passing the collected bank details as command-line arguments: `--bank_account`, `--bank_name`, `--bank_beneficiary`. (Make sure to pass any other required arguments if the script needs them).
 4. **Embed signature** (`assets/signature.png`) — see [Signature embedding](#signature-embedding-technique) below.

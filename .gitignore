@@ -13,6 +13,10 @@ token.json
 output/*
 !output/.gitkeep
 
+# Input evidence files
+input/*
+!input/.gitkeep
+
 # Python
 __pycache__/
 *.pyc

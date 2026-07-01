@@ -6,6 +6,7 @@ import zipfile
 import docx
 from PIL import Image
 from docx2pdf import convert
+import datetime
 
 def parse_antigravity_md(filepath):
     config = {}
@@ -48,7 +49,7 @@ def fill_claim_form(args):
     amount_vnd = args.amount
     
     # 1. Create output folder
-    folder_name = f"LeVanTinh_2026-06-03"
+    folder_name = f"{insured_name.replace(' ', '')}_{datetime.datetime.now().strftime('%Y-%m-%d_%H%M%S%f')[:-3]}"
     output_dir = os.path.join(workspace, "output", folder_name)
     os.makedirs(output_dir, exist_ok=True)
     
@@ -67,6 +68,7 @@ def fill_claim_form(args):
         "{{BANK_ACCOUNT}}": args.bank_account if args.bank_account else config.get("BANK_ACCOUNT", ""),
         "{{BANK_NAME}}": args.bank_name if args.bank_name else config.get("BANK_NAME", ""),
         "{{BANK_BENEFICIARY}}": args.bank_beneficiary if args.bank_beneficiary else config.get("BANK_BENEFICIARY", ""),
+        "{{BANK_ADDRESS}}": args.bank_address,
         "{{VISIT_DATE}}": visit_date,
         "{{DIAGNOSIS}}": diagnosis,
         "{{HOSPITAL}}": hospital
@@ -175,8 +177,9 @@ if __name__ == "__main__":
     parser.add_argument("--hospital", required=True, help="Hospital")
     parser.add_argument("--diagnosis", required=True, help="Diagnosis")
     parser.add_argument("--amount", required=True, help="Amount VND")
-    parser.add_argument("--bank_account", default="", help="Bank Account")
-    parser.add_argument("--bank_name", default="", help="Bank Name")
-    parser.add_argument("--bank_beneficiary", default="", help="Bank Beneficiary")
+    parser.add_argument("--bank_account", default="0041 3814 102", help="Bank Account")
+    parser.add_argument("--bank_name", default="TPBANK", help="Bank Name")
+    parser.add_argument("--bank_beneficiary", default="LÊ VĂN TÀI", help="Bank Beneficiary")
+    parser.add_argument("--bank_address", default="Saigon", help="Bank Address")
     args = parser.parse_args()
     fill_claim_form(args)
