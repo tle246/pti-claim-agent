@@ -1,3 +1,4 @@
+import argparse
 import os
 import re
 import shutil
@@ -33,18 +34,18 @@ def parse_antigravity_md(filepath):
         
     return config
 
-def fill_claim_form():
+def fill_claim_form(args):
     workspace = "/Users/dile/Downloads/project_app/pti-claim-agent"
     antigravity_path = os.path.join(workspace, "ANTIGRAVITY.md")
     config = parse_antigravity_md(antigravity_path)
     
-    insured_name = "Lê Văn Tính"
-    insured_dob = "10/02/1963"
-    insured_cccd = "" # Not provided, leave blank
-    visit_date = "03/06/2026"
-    hospital = "Bệnh viện Chợ Rẫy"
-    diagnosis = "Suy thận mạn giai đoạn 3, thiếu máu, gút, tăng huyết áp"
-    amount_vnd = "1.895.990 VND"
+    insured_name = args.name
+    insured_dob = args.dob
+    insured_cccd = args.cccd
+    visit_date = args.visit_date
+    hospital = args.hospital
+    diagnosis = args.diagnosis
+    amount_vnd = args.amount
     
     # 1. Create output folder
     folder_name = f"LeVanTinh_2026-06-03"
@@ -63,9 +64,9 @@ def fill_claim_form():
         "{{INSURED_DOB}}": insured_dob,
         "{{INSURED_CCCD}}": insured_cccd,
         "{{AMOUNT_VND}}": amount_vnd,
-        "{{BANK_ACCOUNT}}": config.get("BANK_ACCOUNT", ""),
-        "{{BANK_NAME}}": config.get("BANK_NAME", ""),
-        "{{BANK_BENEFICIARY}}": config.get("BANK_BENEFICIARY", ""),
+        "{{BANK_ACCOUNT}}": args.bank_account if args.bank_account else config.get("BANK_ACCOUNT", ""),
+        "{{BANK_NAME}}": args.bank_name if args.bank_name else config.get("BANK_NAME", ""),
+        "{{BANK_BENEFICIARY}}": args.bank_beneficiary if args.bank_beneficiary else config.get("BANK_BENEFICIARY", ""),
         "{{VISIT_DATE}}": visit_date,
         "{{DIAGNOSIS}}": diagnosis,
         "{{HOSPITAL}}": hospital
@@ -166,4 +167,16 @@ def fill_claim_form():
         print("Signature file not found at assets/signature.png.")
 
 if __name__ == "__main__":
-    fill_claim_form()
+    parser = argparse.ArgumentParser(description="Fill PTI Claim Form")
+    parser.add_argument("--name", required=True, help="Insured Name")
+    parser.add_argument("--dob", required=True, help="Insured DOB")
+    parser.add_argument("--cccd", default="", help="Insured CCCD")
+    parser.add_argument("--visit_date", required=True, help="Visit Date")
+    parser.add_argument("--hospital", required=True, help="Hospital")
+    parser.add_argument("--diagnosis", required=True, help="Diagnosis")
+    parser.add_argument("--amount", required=True, help="Amount VND")
+    parser.add_argument("--bank_account", default="", help="Bank Account")
+    parser.add_argument("--bank_name", default="", help="Bank Name")
+    parser.add_argument("--bank_beneficiary", default="", help="Bank Beneficiary")
+    args = parser.parse_args()
+    fill_claim_form(args)

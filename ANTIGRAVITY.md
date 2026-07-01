@@ -38,12 +38,15 @@ Fill in every person covered under the policy. The agent uses this to map a part
 
 ## Per-claim workflow
 
-When the user says **"file a claim for [name]"** and drops evidence files in chat:
+When the user says **"file a claim for [name]"**:
 
-1. **Extract** from evidence (PDFs + images): insured name (match against the [insured table](#insured-persons)), visit date, hospital, diagnosis, total out-of-pocket VND.
-   - If the policy includes Vietnamese social insurance: report the net "after BHYT" amount.
-2. **Confirm** with the user — present a summary table and ask y/n before filling.
-3. **Fill the form**: use `assets/blank_form.docx`. Replace `{{KEY}}` placeholder tokens if present (recommended); otherwise append labeled rows.
+1. **Interactive Prompting (One by One)**: Do NOT ask for Visit date, Hospital, Diagnosis, or Amount. You MUST strictly ask the user for the following missing information ONE BY ONE in the chat:
+   - BANK_ACCOUNT
+   - BANK_NAME
+   - BANK_BENEFICIARY
+   Wait for the user's response to each question before asking the next.
+2. **Confirm** with the user — summarize the bank information provided and ask them to double check before proceeding.
+3. **Fill the form**: Run `python3 scripts/fill_claim.py` passing the collected bank details as command-line arguments: `--bank_account`, `--bank_name`, `--bank_beneficiary`. (Make sure to pass any other required arguments if the script needs them).
 4. **Embed signature** (`assets/signature.png`) — see [Signature embedding](#signature-embedding-technique) below.
 5. **Save** the filled form to `output/[NameCamelCase]_[YYYY-MM-DD]/GYC_[Name]_[VisitDate].docx`.
 6. **Bundle** copies of all evidence files into the same `output/[Name]_[Date]/` folder (compress big phone photos to <1 MB each).
